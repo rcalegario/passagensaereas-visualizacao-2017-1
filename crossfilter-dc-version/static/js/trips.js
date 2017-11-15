@@ -1,17 +1,3 @@
-destino = ["REcife","Paulista","olinda"]
-
-// var list = document.getElementById("sel-origem"); 
-// for (var i = 0; i < destino.length; i++){                
-//     var opt = destino[i];  
-//     var op = document.createElement("option");
-//     var link = document.createElement("a");             
-//     var text = document.createTextNode(opt);
-//     link.appendChild(text);
-//     link.href = "#";
-//     op.appendChild(link);
-//     list.appendChild(op);
-// }
-
 function selectUpdate(id,list){
     var select = document.getElementById(id); 
     selectAddOpitions(select,list)
@@ -32,4 +18,22 @@ function selectAddOpitions(select, list){
     });
 }
 
-selectUpdate("sel-origem",destino)
+function convertData(d) {
+    d['pre_travel'] = +d['pre_travel'];
+    d['duration'] = +d['duration'];
+    d['post_day'] = +d['post_day'];
+    d['start_day'] = +d['start_day'];
+    d['min_price'] = +d['min_price'];
+    d['max_price'] = +d['max_price'];
+    d['mean_price'] = +d['mean_price'];
+    d['median_price'] = +d['median_price'];
+    d['n'] = +d['n'];
+    return d;
+}
+
+d3.csv('../data/sao_paulo.csv', convertData, makeCharts);
+
+function makeCharts(data) {
+    
+}
+
