@@ -91,6 +91,7 @@
                     <div class="chart-wrapper">
                         <div class="chart-title">
                             Dia da Compra
+                            <a class="reset" href="javascript:chart.postDay.filterAll();dc.redrawAll();" style="">reset</a>        
                         </div>
                         <div class="chart-stage">
                             <div id="dia-compra"></div>
@@ -102,6 +103,7 @@
                     <div class="chart-wrapper">
                         <div class="chart-title">
                             Dia da Viagem
+                            <a class="reset" href="javascript:chart.startDay.filterAll();dc.redrawAll();" style="">reset</a>
                         </div>
                         <div class="chart-stage">
                             <div id="dia-viagem"></div>
@@ -119,6 +121,7 @@
                     <div class="chart-wrapper">
                         <div class="chart-title">
                             Mês da Compra
+                            <a class="reset" href="javascript:chart.postMonth.filterAll();dc.redrawAll();" style="">reset</a>
                         </div>
                         <div class="chart-stage">
                             <div id="mes-compra"></div>
@@ -130,6 +133,7 @@
                     <div class="chart-wrapper">
                         <div class="chart-title">
                             Mês da Viagem
+                            <a class="reset" href="javascript:chart.startMonth.filterAll();dc.redrawAll();" style="">reset</a>
                         </div>
                         <div class="chart-stage">
                             <div id="mes-viagem"></div>
@@ -147,6 +151,7 @@
                     <div class="chart-wrapper">
                         <div class="chart-title">
                             Dia da Semana da Compra
+                            <a class="reset" href="javascript:chart.postWday.filterAll();dc.redrawAll();" style="">reset</a>
                         </div>
                         <div class="chart-stage">
                             <div id="wday-compra"></div>
@@ -158,6 +163,7 @@
                     <div class="chart-wrapper">
                         <div class="chart-title">
                             Dia da Semana da Viagem
+                            <a class="reset" href="javascript:chart.startWday.filterAll();dc.redrawAll();" style="">reset</a>
                         </div>
                         <div class="chart-stage">
                             <div id="wday-viagem"></div>
@@ -175,6 +181,7 @@
                     <div class="chart-wrapper">
                         <div class="chart-title">
                             Quantidade de dias antes da viagem
+                            <a class="reset" href="javascript:chart.pre.filterAll();dc.redrawAll();" style="">reset</a>
                         </div>
                         <div class="chart-stage">
                             <div id="pre-travel"></div>
@@ -186,6 +193,7 @@
                     <div class="chart-wrapper">
                         <div class="chart-title">
                             Duração da Viagem
+                            <a class="reset" href="javascript:chart.duration.filterAll();dc.redrawAll();" style="">reset</a>
                         </div>
                         <div class="chart-stage">
                             <div id="travel-duration"></div>
@@ -202,6 +210,7 @@
     <script src="../static/lib/js/d3.min.js"></script>
     <script src="../static/lib/js/crossfilter.js"></script>
     <script src="../static/lib/js/dc.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reductio/0.6.3/reductio.js"></script>
     <script src='../static/js/trips.js' type='text/javascript'></script>
     
 </body>

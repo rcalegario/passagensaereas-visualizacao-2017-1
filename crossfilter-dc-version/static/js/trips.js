@@ -1,29 +1,53 @@
-function selectUpdate(id,list){
+var originSelected = "",
+    destinationSelected = "";
+
+num = {};
+num.maxPrice = dc.numberDisplay("#valor-maximo");
+num.minPrice = dc.numberDisplay("#valor-minimo");
+num.medPrice = dc.numberDisplay("#valor-medio");
+var chart = {}
+chart.postDay = barChartInicializer("#dia-compra");
+chart.postMonth = barChartInicializer("#mes-compra");
+chart.postWday = barChartInicializer("#wday-compra");
+chart.startDay = barChartInicializer("#dia-viagem");
+chart.startMonth = barChartInicializer("#mes-viagem");
+chart.startWday = barChartInicializer("#wday-viagem");
+chart.duration = barChartInicializer("#travel-duration");
+chart.pre = barChartInicializer("#pre-travel");
+
+function selectUpdate(id, list, first){
     var select = document.getElementById(id); 
     while(select.hasChildNodes()){
         select.removeChild(select.firstChild);
     }
-    selectAddOpitions(id,select,list)
+    selectAddOpitions(id,select,list,first)
 }
 
-function selectAddOpitions(id, select, list){
-    var text = document.createTextNode("Selecione uma cidade");
+function optionCreator(opText, id){
+    var text = document.createTextNode(opText);
+    
     var op = document.createElement("option");
-    op.value = -1;
-    op.appendChild(text)
+    op.value = id;
+
+    op.appendChild(text);
+
+    return op;
+}
+
+function selectAddOpitions(id, select, list, first){
+    
+    var text;
+    if(first.length > 0) {
+        var op = optionCreator(first, -1)
+        select.appendChild(op);
+    } 
+
+    var op = optionCreator("Selecione uma cidade", -1)
     select.appendChild(op);
     
     var i = 0;
     list.forEach(element => {
-        var text = document.createTextNode(element);
-        var link = document.createElement("a");
-        link.appendChild(text);
-        link.href = "javascript:choseOrigin(\'" + id + "\')";
-
-        var op = document.createElement("option");
-        op.value = i++;
-        op.appendChild(link);
-
+        var op = optionCreator(element,i++);
         select.appendChild(op);
     });
 }
@@ -47,21 +71,104 @@ var trips,
     dimensions = {},
     groups = {},
     listOrigin = [],
-    listDestination = [];
+    listDestination = [],
+    all;
 
 function initializeData(data) {
     console.log("inicializando dados")
 
-    trips = crossfilter(data);
+    var reducer = reductio()
+        .count(true)
+        .sum(function(d) { return d['median_price']; })
+        .avg(true);
 
+    var reducer2 = reductio()
+        .max(function(d) { return d['median_price']; })
+        .min(function(d) { return d['median_price']; })
+        .median(function(d) { return d['median_price']; });
+
+    trips = crossfilter(data);
+    all = trips.groupAll();
+    reducer2(all);
+    
     dimensions.origin = trips.dimension(d => { return d["origin"] });
     dimensions.destination = trips.dimension(d => { return d["destination"] });
+    dimensions.postDay = trips.dimension(d => { return d["post_day"] });
+    dimensions.startDay = trips.dimension(d => { return d["start_day"] });
+    dimensions.postMonth = trips.dimension(d => { return d["post_month"] });
+    dimensions.startMonth = trips.dimension(d => { return d["start_month"] });
+    dimensions.postWday = trips.dimension(d => { return d["post_wday"] });
+    dimensions.startWday = trips.dimension(d => { return d["start_wday"] });
+    dimensions.pre = trips.dimension(d => { return d["pre_travel"] });
+    dimensions.duration = trips.dimension(d => { return d["duration"] });
+    
+    var groupsKeys = Object.keys(dimensions);
+    groupsKeys.forEach(element => {
+        groups[element] = dimensions[element]
+            .group();
+            // .reduce(reduceAdd,reduceRemove,reduceInit);
+        reducer(groups[element]);
+    })
 
-    groups.origin = dimensions.origin.group().reduce(reduceAdd,reduceRemove,reduceInit)
-    groups.destination = dimensions.destination.group().reduce(reduceAdd,reduceRemove,reduceInit)
+    num.maxPrice
+        .formatNumber(d3.format("d"))
+        .valueAccessor(function(d){ return d.max; })
+        .group(all);
+
+    num.minPrice
+        .formatNumber(d3.format("d"))
+        .valueAccessor(function(d){return d.min; })
+        .group(all);
+
+    num.medPrice
+        .formatNumber(d3.format("d"))
+        .valueAccessor(function(d){return d.median; })
+        .group(all);
+
+    var chartsKeys = Object.keys(chart);
+    chartsKeys.forEach(element => {
+
+        chart[element]
+            .dimension(dimensions[element])
+        if(element == 'pre' || element == 'duration') {
+            newGroup = remove_empty_bins(groups[element]);
+            chart[element]
+                .group(newGroup);
+            chart[element].xAxis().ticks(5);
+            // chart[element].yAxis().ticks(5);
+        } else {
+            chart[element]
+                .group(groups[element]);
+        }
+    })
 
     createListOrigin();
     createListDestination();
+}
+
+function remove_empty_bins(source_group) {
+    return {
+        all:function () {
+            return source_group.all().filter(function(d) {
+                return d.value.count != 0; 
+            });
+        }
+    };
+}
+
+function barChartInicializer(id){
+    return dc.barChart(id)
+        .width(550)
+        .height(400)
+        .valueAccessor(dataAcessor)
+        .x(d3.scale.ordinal())
+        .xUnits(dc.units.ordinal)
+        .margins({top: 10, right: 50, bottom: 30, left: 40})
+        .elasticY(true);
+}
+
+function dataAcessor(d) {
+    return (d.value.count > 0) ? d.value.sum/d.value.count : 0;
 }
 
 function createListOrigin() {
@@ -71,7 +178,7 @@ function createListOrigin() {
                 listOrigin.push(element.key);
             }
     });
-        selectUpdate("sel-origem", listOrigin);
+    selectUpdate("sel-origem", listOrigin, originSelected);
 }
 
 function createListDestination() {
@@ -82,7 +189,7 @@ function createListDestination() {
             }
     });
     console.log(listDestination.length)
-    selectUpdate("sel-destino", listDestination);
+    selectUpdate("sel-destino", listDestination, destinationSelected);
 }
 
 function choseOrigin(id) {
@@ -92,14 +199,14 @@ function choseOrigin(id) {
 function reduceAdd(p, v) {
     p.count++;
     p.sum += v['median_price'];
-    p.avg = (p.count > 0) ? p.sum/p.count : 0;
+    // p.avg = (p.count > 0) ? p.sum/p.count : 0;
     return p;
 }
 
 function reduceRemove(p, v) {
     p.count--;
     p.sum -= v['median_price'];
-    p.avg = (p.count > 0) ? p.sum/p.count : 0;
+    // p.avg = (p.count > 0) ? p.sum/p.count : 0;
     return p;
 }
 
@@ -111,28 +218,34 @@ function reduceInit() {
     }
 }
 
+
 $("#sel-origem").change(function(){
     var originId = $(this).val();
         
+    dimensions.origin.filterAll();
     if(originId < 0) {
-        dimensions.origin.filterAll();
+        originSelected = "";
+        d3.selectAll("svg").remove();
     } else {
-        var originName = listOrigin[originId];
-        dimensions.origin.filter(originName);
+        originSelected = listOrigin[originId];
+        dimensions.origin.filter(originSelected);
+        if(destinationSelected.length > 0) dc.renderAll();
     }
-
     createListDestination();
 });
 
 $("#sel-destino").change(function(){
     var destinationId = $(this).val();
-        
+    
+    dimensions.destination.filterAll();
     if(destinationId < 0) {
-        dimensions.destination.filterAll();
+        destinationSelected = "";
+        d3.selectAll("svg").remove();
     } else {
-        var destinationName = listDestination[destinationId];
-        dimensions.destination.filter(destinationName);
+        destinationSelected = listDestination[destinationId];
+        dimensions.destination.filter(destinationSelected);
+        if(originSelected.length > 0) dc.renderAll();
     }
-
     createListOrigin();
 });
+// 
