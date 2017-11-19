@@ -1,0 +1,341 @@
+São Paulo
+Belo Horizonte
+Brasília
+Campo Grande
+Cuiabá
+Curitiba
+Florianópolis
+Foz do Iguaçu
+Goiânia
+Ilhéus
+João Pessoa
+Joinville
+Londrina
+Natal
+Navegantes
+Palmas
+Porto Alegre
+Porto Seguro
+Ribeirão Preto
+Rio de Janeiro
+Salvador
+Uberlândia
+Vitória
+Recife
+Campinas
+Fortaleza
+Maceió
+Manaus
+São Luís
+Aracaju
+Belém
+Imperatriz
+Macapá
+Teresina
+Maringá
+Juiz de Fora
+São José do Rio Preto
+Boa Vista
+Santarém
+Bauru
+Campina Grande
+Porto Velho
+Marabá
+Jaguaruna
+Marília
+Cabo Frio
+Caxias do Sul
+Montes Claros
+Chapecó
+Dourados
+Vitória da Conquista
+Rio Branco
+Londres
+Passo Fundo
+Lisboa
+Paris
+Cataratas del Iguazú
+Santiago
+Ushuaia
+Boston
+Cidade do Panamá
+Miami
+Nova York
+San Francisco
+San Juan
+Amsterdã
+Dublin
+Assunção
+Bogotá
+Cancun
+Los Angeles
+Pittsburgh
+Lima
+Puerto Maldonado
+Hamburgo
+Madri
+Moscou
+Tel Aviv
+Montevidéu
+Buenos Aires
+Juazeiro do Norte
+Ponta Grossa
+Cascavel
+Araçatuba
+Pelotas
+Presidente Prudente
+Santa Maria
+Petrolina
+Ipatinga
+Varginha
+Santo Ângelo
+Uruguaiana
+Barreiras
+Campos dos Goytacazes
+Três Lagoas
+Uberaba
+Araxá
+Divinópolis
+Teixeira de Freitas
+Carajás
+Feira de Santana
+Governador Valadares
+Lençóis
+Sinop
+Tefé
+Alta Floresta
+Araguaina
+Barra do Garças
+Corumbá
+Cruzeiro do Sul
+Ji-Paraná
+Lages
+Paulo Afonso
+Rio Verde
+Sorriso
+Tabatinga
+Vilhena
+Caldas Novas
+Fernando de Noronha
+Parnaíba
+Rondonópolis
+Cacoal
+Altamira
+Valença (Bahia)
+Bonito
+Seicheles
+Cartagena
+San Andrés
+Seul
+Santa Clara
+Havana
+Cidade do México
+Mendoza
+Curaçao
+Auckland
+Hong Kong
+Orlando
+Cusco
+Houston
+Tóquio
+Nagoia
+Osaka
+Kobe
+Puerto Montt
+Ottawa
+Toronto
+Edmonton
+Quebec
+Seymour (Galápagos)
+Sydney
+Brisbane
+Melbourne
+Queenstown
+Wellington
+Bridgetown (Barbados)
+Austin
+Bruxelas
+Bruxelas (Estação de Trem)
+Genebra
+Milão
+Nápoles
+Roma
+Valência
+Istambul
+Málaga
+Zurique
+Chicago
+Washington
+Ontario (Califórnia)
+São Tomé e Príncipe
+Kuala Lumpur
+Atenas
+Zagreb
+Fort Lauderdale
+Las Vegas
+Joanesburgo
+Cidade do Cabo
+Córdoba
+Bariloche
+Gold Coast
+Calama
+Muscat
+Aruba
+Cleveland
+Bangalore (Índia)
+Bombaim (Mumbai)
+Calcutá
+Delhi
+Bangkok
+Punta Arenas
+Maputo
+Adelaide
+Pequim
+Fort McMurray
+Kelowna (Canadá)
+Thunder Bay (Canadá)
+Guadalajara
+Frankfurt
+Portland (Óregon)
+Seattle
+Long Beach
+San José (Califórnia)
+Baltimore
+Nassau
+Hanói
+Zanzibar
+Bali
+Luanda
+Oakland (Califórnia)
+Santa Ana (Califórnia)
+Fresno
+Ilhas Maurício
+Phuket
+El Calafate
+Casablanca
+Ho Chi Minh
+Papeete (Taiti)
+Cingapura
+Hanga Roa
+Xangai
+Kilimanjaro
+Puerto Vallarta (Riviera Nayarit)
+Jericoacoara
+San José (Costa Rica)
+Windhoek (Namíbia)
+Denver
+Providenciales (Turcas e Caicos)
+Dubai
+Belgrado
+Krabi (Tailândia)
+Veneza
+Temuco
+Santa Cruz de la Sierra
+Cochabamba
+La Paz
+Anchorage
+Holguín
+Munique
+Dusseldorf
+Berlim
+Colônia
+Stuttgart
+Stuttgart (Estação de Trem)
+Dallas
+Hangzhou
+Abu Dhabi
+Singapura
+Canberra
+Arequipa
+Cajamarca
+Chiclayo
+Iquitos
+Juliaca
+Piura
+Pucallpa (Peru)
+Tarapoto (Peru)
+Trujillo
+Tumbes
+Viena
+Alicante
+Bolonha
+Luxemburgo
+Praga
+Verona
+Vigo
+Monterrey
+Burbank (Los Angeles)
+Concepción
+Chengdu
+Guangzhou (Canton)
+San Antonio
+San Rafael
+Santa Marta
+Bilbao
+Sevilha
+Tampa
+Nova Orleans
+Palm Springs
+Memphis
+Montreal
+Vancouver
+Palma de Maiorca
+Edimburgo
+Manchester
+Turim
+Florença
+Catânia (Itália)
+Beirute
+Copenhague
+Hannover
+Lyon
+Marselha
+Nice
+Nuremberg
+Toulouse
+Bari
+Basileia
+Bucareste
+Budapeste
+Helsinque
+Ibiza
+Oslo
+Pisa
+Santiago de Compostela
+Varsóvia
+Oklahoma City
+Sófia (Bulgária)
+Punta del Este
+Bordeaux
+Acapulco
+Gênova
+Punta Cana
+Estocolmo
+Taipé (Taiwan)
+Granada
+Marrakesh
+Calgary
+Halifax
+Prince George (Canadá)
+Regina (Canadá)
+Saskatoon (Canadá)
+St. John's (Canadá)
+Victoria
+Winnipeg
+Phoenix
+Atlanta
+Quito
+London (Canadá)
+Moncton (Canadá)
+Hamilton / Toronto
+La Coruña
+Pamplona
+Cincinnati
+Detroit
+Cairo
+Asturias
+Salt Lake City
+Manila
+Rosário
+Sacramento
+Barcelona

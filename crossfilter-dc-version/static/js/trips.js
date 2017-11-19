@@ -1,10 +1,10 @@
 var originSelected = "",
     destinationSelected = "";
 
-num = {};
-num.maxPrice = dc.numberDisplay("#valor-maximo");
-num.minPrice = dc.numberDisplay("#valor-minimo");
-num.medPrice = dc.numberDisplay("#valor-medio");
+// num = {};
+// num.maxPrice = dc.numberDisplay("#valor-maximo");
+// num.minPrice = dc.numberDisplay("#valor-minimo");
+// num.medPrice = dc.numberDisplay("#valor-medio");
 var chart = {}
 chart.postDay = barChartInicializer("#dia-compra");
 chart.postMonth = barChartInicializer("#mes-compra");
@@ -82,14 +82,14 @@ function initializeData(data) {
         .sum(function(d) { return d['median_price']; })
         .avg(true);
 
-    var reducer2 = reductio()
-        .max(function(d) { return d['median_price']; })
-        .min(function(d) { return d['median_price']; })
-        .median(function(d) { return d['median_price']; });
+    // var reducer2 = reductio()
+    //     .max(function(d) { return d['median_price']; })
+    //     .min(function(d) { return d['median_price']; })
+    //     .median(function(d) { return d['median_price']; });
 
     trips = crossfilter(data);
-    all = trips.groupAll();
-    reducer2(all);
+    // all = trips.groupAll();
+    // reducer2(all);
     
     dimensions.origin = trips.dimension(d => { return d["origin"] });
     dimensions.destination = trips.dimension(d => { return d["destination"] });
@@ -110,20 +110,20 @@ function initializeData(data) {
         reducer(groups[element]);
     })
 
-    num.maxPrice
-        .formatNumber(d3.format("d"))
-        .valueAccessor(function(d){ return d.max; })
-        .group(all);
+    // num.maxPrice
+    //     .formatNumber(d3.format("d"))
+    //     .valueAccessor(function(d){ return d.max; })
+    //     .group(all);
 
-    num.minPrice
-        .formatNumber(d3.format("d"))
-        .valueAccessor(function(d){return d.min; })
-        .group(all);
+    // num.minPrice
+    //     .formatNumber(d3.format("d"))
+    //     .valueAccessor(function(d){return d.min; })
+    //     .group(all);
 
-    num.medPrice
-        .formatNumber(d3.format("d"))
-        .valueAccessor(function(d){return d.median; })
-        .group(all);
+    // num.medPrice
+    //     .formatNumber(d3.format("d"))
+    //     .valueAccessor(function(d){return d.median; })
+    //     .group(all);
 
     var chartsKeys = Object.keys(chart);
     chartsKeys.forEach(element => {
@@ -132,6 +132,7 @@ function initializeData(data) {
             .dimension(dimensions[element])
         if(element == 'pre' || element == 'duration') {
             newGroup = remove_empty_bins(groups[element]);
+            
             chart[element]
                 .group(newGroup);
             chart[element].xAxis().ticks(5);
@@ -222,7 +223,9 @@ function reduceInit() {
 $("#sel-origem").change(function(){
     var originId = $(this).val();
         
-    dimensions.origin.filterAll();
+        filterAllDimensions();
+    
+    dimensions.destination.filterAll()
     if(originId < 0) {
         originSelected = "";
         d3.selectAll("svg").remove();
@@ -237,7 +240,10 @@ $("#sel-origem").change(function(){
 $("#sel-destino").change(function(){
     var destinationId = $(this).val();
     
-    dimensions.destination.filterAll();
+    
+    filterAllDimensions();
+    
+    dimensions.origin.filterAll()
     if(destinationId < 0) {
         destinationSelected = "";
         d3.selectAll("svg").remove();
@@ -248,4 +254,15 @@ $("#sel-destino").change(function(){
     }
     createListOrigin();
 });
+
+function filterAllDimensions() {
+    if(destinationSelected.length > 0 && originSelected.length > 0){
+        var keys = Object.keys(dimensions);
+        keys.forEach(element => {
+            if(element != "origin" && element != "destination"){
+                dimensions[element].filterAll()
+            }
+        })
+    }
+}
 // 
