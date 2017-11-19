@@ -1,7 +1,9 @@
 var request = require('request');
 var fs = require('fs');
+var properties = require('properties-reader')('google-geo-coord-api.properties');
+
 var googleMapsClient = require('@google/maps').createClient({
-	key: 'AIzaSyCMZFDnIos1SYZ15xW1Hrr9I6ddWZE9XFQ'
+	key: properties.get('google.api.maps.key')
   });
 
 var cities = fs.readFileSync('cities.txt', 'utf-8').split('\n');
